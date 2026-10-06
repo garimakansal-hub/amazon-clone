@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Clone | Online Shopping</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="header">
+    <div class="nav-belt">
+      <!-- Logo -->
+      <a href="#" class="nav-logo hover-outline">
+        <span class="logo-amazon">amazon</span><span class="logo-dot">.clone</span>
+      </a>
+
+      <!-- Deliver Location -->
+      <div class="nav-location hover-outline" id="locationBtn">
+        <i class="fa-solid fa-location-dot nav-icon"></i>
+        <div class="nav-location-text">
+          <span class="nav-line-1">Deliver to</span>
+          <span class="nav-line-2">India</span>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="nav-search">
+        <select id="searchCategory" class="search-dropdown">
+          <option value="all">All Departments</option>
+          <option value="electronics">Electronics</option>
+          <option value="fashion">Fashion & Apparel</option>
+          <option value="home">Home & Kitchen</option>
+          <option value="beauty">Beauty & Grooming</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Search Amazon clone products, electronics, styles..." autocomplete="off">
+        <button id="searchBtn" class="search-btn" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="nav-lang hover-outline">
+        <span class="flag-icon">🌐</span>
+        <span class="nav-line-2">EN</span>
+        <i class="fa-solid fa-caret-down nav-caret"></i>
+      </div>
+
+      <!-- Accounts & Lists -->
+      <div class="nav-account hover-outline" id="accountBtn">
+        <span class="nav-line-1">Hello, sign in</span>
+        <span class="nav-line-2">Account & Lists <i class="fa-solid fa-caret-down nav-caret"></i></span>
+      </div>
+
+      <!-- Returns & Orders -->
+      <div class="nav-orders hover-outline" id="ordersBtn">
+        <span class="nav-line-1">Returns</span>
+        <span class="nav-line-2">& Orders</span>
+      </div>
+
+      <!-- Cart Button -->
+      <div class="nav-cart hover-outline" id="cartToggleBtn">
+        <div class="cart-icon-wrapper">
+          <i class="fa-solid fa-cart-shopping cart-icon"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+        <span class="cart-title">Cart</span>
+      </div>
+    </div>
+
+    <!-- ================= SUB-NAVIGATION BAR ================= -->
+    <nav class="nav-main">
+      <ul class="nav-links">
+        <li class="nav-menu-all hover-outline" id="menuToggleBtn">
+          <i class="fa-solid fa-bars"></i>
+          <span>All</span>
+        </li>
+        <li class="nav-item hover-outline active-filter" data-category="all">All Products</li>
+        <li class="nav-item hover-outline" data-category="deals">Today's Deals</li>
+        <li class="nav-item hover-outline" data-category="electronics">Electronics</li>
+        <li class="nav-item hover-outline" data-category="fashion">Fashion</li>
+        <li class="nav-item hover-outline" data-category="home">Home & Kitchen</li>
+        <li class="nav-item hover-outline" data-category="beauty">Beauty & Care</li>
+        <li class="nav-item hover-outline" id="customerServiceBtn">Customer Service</li>
+        <li class="nav-item hover-outline" id="primeBtn">Prime Deals</li>
+      </ul>
+      <div class="nav-promo">
+        <span>Shop Great Summer Deals</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= SIDEBAR NAVIGATION (DRAWER) ================= -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="side-drawer" id="sideDrawer">
+    <div class="drawer-header">
+      <i class="fa-solid fa-circle-user drawer-user-icon"></i>
+      <h3>Hello, Sign In</h3>
+      <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-section">
+        <h4>Trending & Best Sellers</h4>
+        <ul>
+          <li data-filter="deals"><i class="fa-solid fa-fire"></i> Best Sellers</li>
+          <li data-filter="deals"><i class="fa-solid fa-bolt"></i> New Releases</li>
+          <li data-filter="deals"><i class="fa-solid fa-tag"></i> Movers & Shakers</li>
+        </ul>
+      </div>
+      <div class="drawer-section">
+        <h4>Shop By Department</h4>
+        <ul>
+          <li data-filter="electronics"><i class="fa-solid fa-laptop"></i> Electronics & Computers</li>
+          <li data-filter="fashion"><i class="fa-solid fa-shirt"></i> Men & Women Fashion</li>
+          <li data-filter="home"><i class="fa-solid fa-couch"></i> Home & Kitchen</li>
+          <li data-filter="beauty"><i class="fa-solid fa-spa"></i> Beauty & Personal Care</li>
+        </ul>
+      </div>
+      <div class="drawer-section">
+        <h4>Help & Settings</h4>
+        <ul>
+          <li><i class="fa-solid fa-user"></i> Your Account</li>
+          <li><i class="fa-solid fa-globe"></i> English</li>
+          <li><i class="fa-solid fa-headset"></i> Customer Service</li>
+          <li><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign In</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= CART SLIDE-OVER DRAWER ================= -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Shopping Cart (<span id="cartDrawerCount">0</span> items)</h3>
+      </div>
+      <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Delivery Progress Bar -->
+    <div class="free-shipping-bar">
+      <p id="freeShippingText"><i class="fa-solid fa-truck-fast"></i> Add <strong>$35.00</strong> more to qualify for <strong>FREE Delivery</strong></p>
+      <div class="progress-track">
+        <div class="progress-fill" id="shippingProgress"></div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-items" id="cartDrawerItems">
+      <!-- Items dynamically populated via JS -->
+      <div class="empty-cart-view">
+        <i class="fa-solid fa-basket-shopping empty-icon"></i>
+        <p>Your Amazon cart is empty</p>
+        <button class="shop-now-btn" id="startShoppingBtn">Start Shopping</button>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-subtotal-row">
+        <span>Subtotal:</span>
+        <span class="subtotal-amount" id="cartSubtotalAmount">$0.00</span>
+      </div>
+      <p class="tax-shipping-note">Taxes & shipping calculated at checkout</p>
+      <button class="checkout-btn" id="checkoutBtn">
+        <i class="fa-solid fa-lock"></i> Proceed to Checkout
+      </button>
+      <button class="clear-cart-btn" id="clearCartBtn">Clear Cart</button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-container">
+
+    <!-- HERO CAROUSEL BANNER -->
+    <section class="hero-carousel">
+      <div class="carousel-slides" id="carouselSlides">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(234, 237, 237, 1)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80');">
+          <div class="hero-content">
+            <span class="badge-tag">MEGA SALE 2026</span>
+            <h1>Huge Savings on Electronics & Gadgets</h1>
+            <p>Up to 50% off on flagship headphones, laptops, and 4K displays with Fast Free Shipping.</p>
+            <button class="hero-cta-btn" data-category="electronics">Explore Electronics</button>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-slide" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(234, 237, 237, 1)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80');">
+          <div class="hero-content">
+            <span class="badge-tag">TRENDING FASHION</span>
+            <h1>Upgrade Your Style Collection</h1>
+            <p>Discover hand-picked summer apparel, watches, luxury footwear, and designer essentials.</p>
+            <button class="hero-cta-btn" data-category="fashion">Shop Fashion Now</button>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-slide" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(234, 237, 237, 1)), url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=80');">
+          <div class="hero-content">
+            <span class="badge-tag">SMART LIVING</span>
+            <h1>Transform Your Home & Kitchen</h1>
+            <p>Premium appliances, cookware, smart lights, and comfortable decor at unbeatable rates.</p>
+            <button class="hero-cta-btn" data-category="home">Upgrade Your Home</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Navigation Buttons -->
+      <button class="carousel-btn prev-btn" id="prevSlideBtn" aria-label="Previous Slide">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="carousel-btn next-btn" id="nextSlideBtn" aria-label="Next Slide">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Carousel Dots -->
+      <div class="carousel-dots" id="carouselDots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+    </section>
+
+    <!-- FLOATING FEATURE CARDS OVER HERO -->
+    <section class="feature-cards-grid">
+      <div class="feature-card">
+        <h3>Electronics & Smart Devices</h3>
+        <div class="quad-images">
+          <div class="quad-item" data-filter="electronics">
+            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=80" alt="Smartwatches">
+            <span>Smartwatches</span>
+          </div>
+          <div class="quad-item" data-filter="electronics">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" alt="Headphones">
+            <span>Audio & Gear</span>
+          </div>
+          <div class="quad-item" data-filter="electronics">
+            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80" alt="Monitors">
+            <span>PC Displays</span>
+          </div>
+          <div class="quad-item" data-filter="electronics">
+            <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=400&q=80" alt="Smartphones">
+            <span>Smartphones</span>
+          </div>
+        </div>
+        <a href="#productsSection" class="card-link" data-category="electronics">See all electronics <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="feature-card">
+        <h3>Trending Summer Styles</h3>
+        <div class="quad-images">
+          <div class="quad-item" data-filter="fashion">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=400&q=80" alt="Clothing">
+            <span>Top Tees</span>
+          </div>
+          <div class="quad-item" data-filter="fashion">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" alt="Sneakers">
+            <span>Sport Footwear</span>
+          </div>
+          <div class="quad-item" data-filter="fashion">
+            <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=400&q=80" alt="Watches">
+            <span>Luxury Timepieces</span>
+          </div>
+          <div class="quad-item" data-filter="fashion">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=400&q=80" alt="Sunglasses">
+            <span>Accessories</span>
+          </div>
+        </div>
+        <a href="#productsSection" class="card-link" data-category="fashion">Explore fashion <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="feature-card">
+        <h3>Home Refresh & Decor</h3>
+        <div class="quad-images">
+          <div class="quad-item" data-filter="home">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Decor">
+            <span>Interior Decor</span>
+          </div>
+          <div class="quad-item" data-filter="home">
+            <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=400&q=80" alt="Kitchenware">
+            <span>Kitchen Tools</span>
+          </div>
+          <div class="quad-item" data-filter="home">
+            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=400&q=80" alt="Lighting">
+            <span>Lighting</span>
+          </div>
+          <div class="quad-item" data-filter="home">
+            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=400&q=80" alt="Organizers">
+            <span>Storage & Organizers</span>
+          </div>
+        </div>
+        <a href="#productsSection" class="card-link" data-category="home">Shop home items <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="feature-card single-promo-card">
+        <h3>Prime Deal of the Day</h3>
+        <div class="single-promo-img">
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80" alt="Ultra Smartwatch">
+          <span class="discount-pill">Up to 45% Off</span>
+        </div>
+        <div class="deal-countdown">
+          <span>Ends in: </span><strong id="dealTimer">08:42:19</strong>
+        </div>
+        <a href="#productsSection" class="card-link" data-category="deals">Browse all lightning deals <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL SCROLLING PRODUCT ROW: TODAY'S TOP DEALS -->
+    <section class="horizontal-deal-section">
+      <div class="section-header">
+        <h2>🔥 Today's Best Deals & Top Sellers</h2>
+        <a href="#productsSection" class="view-all-link">See all deals</a>
+      </div>
+      <div class="scroll-container-wrapper">
+        <button class="scroll-btn left-scroll-btn" id="scrollLeftBtn" aria-label="Scroll Left">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="horizontal-product-scroll" id="horizontalDealTrack">
+          <!-- Populated by JS -->
+        </div>
+        <button class="scroll-btn right-scroll-btn" id="scrollRightBtn" aria-label="Scroll Right">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- MAIN PRODUCT CATALOG GRID -->
+    <section class="products-section" id="productsSection">
+      <div class="section-header">
+        <div class="catalog-title-wrapper">
+          <h2 id="catalogHeaderTitle">All Products</h2>
+          <span class="results-count" id="resultsCount">Showing all items</span>
+        </div>
+        <!-- Filter and Sort Controls -->
+        <div class="catalog-filters">
+          <label for="sortBySelect"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort by:</label>
+          <select id="sortBySelect">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Customer Rating</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Products populated dynamically by script.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= QUICK VIEW MODAL ================= -->
+  <div class="modal-overlay" id="quickViewOverlay">
+    <div class="modal-content" id="quickViewContent">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- Populated dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHECKOUT SUCCESS MODAL ================= -->
+  <div class="modal-overlay" id="orderSuccessOverlay">
+    <div class="modal-content order-success-card">
+      <div class="success-icon-wrap">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for shopping with our Amazon Clone! A confirmation email and tracking link have been generated.</p>
+      <div class="order-details-summary">
+        <p><strong>Order ID:</strong> <span id="placedOrderId">#AMZ-892194</span></p>
+        <p><strong>Total Paid:</strong> <span id="placedOrderTotal">$0.00</span></p>
+        <p><strong>Estimated Delivery:</strong> Within 2 Business Days 🚚</p>
+      </div>
+      <button class="primary-btn" id="continueShoppingBtn">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" id="backToTopBtn">
+      Back to top
+    </a>
+
+    <!-- Footer Main Columns -->
+    <div class="footer-links-grid">
+      <div class="footer-column">
+        <h4>Get to Know Us</h4>
+        <ul>
+          <li><a href="#">About Amazon Clone</a></li>
+          <li><a href="#">Careers & Culture</a></li>
+          <li><a href="#">Press Releases</a></li>
+          <li><a href="#">Amazon Science</a></li>
+          <li><a href="#">Sustainability</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Connect with Us</h4>
+        <ul>
+          <li><a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
+          <li><a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+          <li><a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter / X</a></li>
+          <li><a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Make Money with Us</h4>
+        <ul>
+          <li><a href="#">Sell on Amazon</a></li>
+          <li><a href="#">Sell under Amazon Accelerator</a></li>
+          <li><a href="#">Protect and Build Your Brand</a></li>
+          <li><a href="#">Amazon Global Selling</a></li>
+          <li><a href="#">Become an Affiliate</a></li>
+          <li><a href="#">Fulfillment by Amazon</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Let Us Help You</h4>
+        <ul>
+          <li><a href="#">Your Account</a></li>
+          <li><a href="#">Returns Centre</a></li>
+          <li><a href="#">100% Purchase Protection</a></li>
+          <li><a href="#">Amazon App Download</a></li>
+          <li><a href="#">Help & Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Logo & Countries -->
+    <div class="footer-middle">
+      <div class="footer-logo">
+        <span class="logo-amazon">amazon</span><span class="logo-dot">.clone</span>
+      </div>
+      <div class="footer-meta-selectors">
+        <button class="footer-pill-btn"><i class="fa-solid fa-globe"></i> English</button>
+        <button class="footer-pill-btn"><i class="fa-solid fa-flag-usa"></i> United States</button>
+        <button class="footer-pill-btn">USD - U.S. Dollar</button>
+      </div>
+    </div>
+
+    <!-- Copyright & Disclaimer -->
+    <div class="footer-bottom">
+      <p>Conditions of Use & Sale &bull; Privacy Notice &bull; Interest-Based Ads</p>
+      <p>&copy; 2026, Amazon Clone Project. Designed & built with HTML5, CSS3, and modern JavaScript for educational & portfolio demonstration.</p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
